@@ -1,0 +1,46 @@
+{
+	"services": {
+		"LaunchPage": {
+			"adapter": {
+				"config": {
+					"catalogs": [],
+					"groups": [
+						{
+							"id": "Administration",
+							"title": "Administration",
+							"isPreset": true,
+							"isVisible": true,
+							"tiles": [
+							{"id": "BrowseVehicleTypes", "tileType": "sap.ushell.ui.tile.StaticTile", "properties": {"title": "Manage vehicle types", "targetURL": "#browse-vehicle-types"}}
+							]
+						}
+					]
+				}
+			}
+		},
+		"NavTargetResolution": {
+			"config": {
+				"enableClientSideResolution": true
+			}
+		},
+		"ClientSideTargetResolution": {
+			"adapter": {
+				"config": {
+					"inbounds": {
+						"BrowseVehicleTypes": {
+							"semanticObject": "VehicleTypes",
+							"action": "display",
+							"title": "Browse Vehicle Types",
+							"resolutionResult": {
+								"applicationType": "SAPUI5",
+								"additionalInformation": "SAPUI5.Component=vehicleTypes",
+								"url": "/types/webapp"
+							}
+
+						}
+					}
+				}
+			}
+		}
+	}
+}

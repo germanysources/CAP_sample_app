@@ -1,0 +1,141 @@
+{
+  "_version": "0.0.0",
+  "sap.app": {
+    "id": "tour",
+    "type": "application",
+    "title": "Manage Tours",
+    "description": "Sample Application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "dataSources": {
+      "DispositionService": {
+        "uri": "tour/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "sourceTemplate": {
+      "id": "ui5template.basicSAPUI5ApplicationProject",
+      "-id": "ui5template.smartTemplate",
+      "version": "1.40.12"
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "intent1": {
+          "signature": {
+            "parameters": {
+              "Books.author.ID":{
+                "renameTo": "ID"
+              }
+            },
+            "additionalParameters": "ignored"
+          },
+          "semanticObject": "VehicleTypes",
+          "action": "display",
+          "title": "{{appTitle}}",
+          "info": "{{appInfo}}",
+          "subTitle": "{{appSubTitle}}",
+          "icon": "sap-icon://SAP-icons-TNT/user",
+          "indicatorDataSource": {
+            "dataSource": "DispositionService",
+            "path": "VehicleTypes/$count",
+            "refresh": 1800
+          }
+        }
+      }
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.81.0",
+      "libs": {
+        "sap.fe.templates": {}
+      }
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      },
+      "": {
+        "dataSource": "DispositionService",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupProperties": {
+            "default": {
+              "submit": "Auto"
+            }
+          }
+        }
+      }
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "VehicleTypesList",
+          "target": "VehicleTypesList"
+        },
+        {
+          "pattern": "VehicleTypes({key}):?query:",
+          "name": "VehicleTypeDetails",
+          "target": "VehicleTypeDetails"
+        }
+      ],
+      "targets": {
+        "VehicleTypesList": {
+          "type": "Component",
+          "id": "VehicleTypesList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "VehicleTypes",
+              "initialLoad": true,
+              "navigation": {
+                "Authors": {
+                  "detail": {
+                    "route": "VehicleTypeDetails"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "VehicleTypeDetails": {
+          "type": "Component",
+          "id": "VehicleTypeDetailsList",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "entitySet": "VehicleTypes"
+            }
+          }
+        }
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "fullWidth": false,
+    "deviceTypes":{
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}
