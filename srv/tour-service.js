@@ -13,6 +13,9 @@ class DispositionService extends cds.ApplicationService {
       await UPDATE(VehicleTypes, {ID: req.data.ID}).with(req.data);
       return req.reply({});
     });
+    this.on('deleteVehicleType', async req => {
+      await DELETE(VehicleTypes, {ID: req.data.ID});
+    });
     return super.init();
   }
 }

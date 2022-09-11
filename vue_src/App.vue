@@ -22,6 +22,7 @@
     <VehicleType
       v-for="vehicleType in vehicleTypes"
       v-bind:vehicleType="vehicleType"
+      @deleted="readVehicleTypes()"
     />
   </div>
 </template>
@@ -29,6 +30,10 @@
 import VehicleType from './components/VehicleType.vue';
 
 export default {
+  name: 'App',
+  components: {
+    VehicleType
+  },
   data: function() {
     return {
       user: undefined,
@@ -57,7 +62,7 @@ export default {
 	if (!response.ok)
 	  throw new Error(await response.text());
 
-	this.vehicleTypes = await response.json();
+	this.vehicleTypes = (await response.json()).value;
       } catch(error) { console.error(error); }
     },
     createVehicleType: async function() {

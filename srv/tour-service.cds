@@ -7,5 +7,6 @@ service DispositionService @(path: '/tour') @(requires:'authenticated-user') {
   entity PlannedTours as projection on my.PlannedTours;
 
   action createVehicleType(text : String) returns {};
-  action updateVehicleType(id: UUID, text: String) returns {};
+  action updateVehicleType(ID: UUID, text: String) returns {};
+  action deleteVehicleType(ID: UUID) returns {};
 }
