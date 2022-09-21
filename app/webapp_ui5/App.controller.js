@@ -16,7 +16,7 @@ sap.ui.define([
       });
       context.created()
        .then(() => console.log('success'))
-       .catch(() => console.log('Failed to create entity of type FlightPlan'));
+       .catch(() => console.error('Failed to create entity of type VehicleTypes'));
       model.submitBatch("AddTemplate");
     }
   });
