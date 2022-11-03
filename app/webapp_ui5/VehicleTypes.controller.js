@@ -4,7 +4,7 @@ sap.ui.define([
 ], function(Controller, models) {
   "use strict";
 
-  return Controller.extend("tour.App", {
+  return Controller.extend("tour.VehicleTypes", {
     onInit: function onSave(){
       var model = models.createODataModel();
       this.getView().setModel(model);
@@ -15,8 +15,14 @@ sap.ui.define([
         text: this.getView().byId('text').getValue(),
       });
       context.created()
-       .then(() => console.log('success'))
-       .catch(() => console.error('Failed to create entity of type VehicleTypes'));
+       .then(() => {
+	 console.log('success');
+	 model.refresh();
+       })
+       .catch(error => {
+	 console.error('Failed to create entity of type VehicleTypes');
+	 console.error(error);
+       });
       model.submitBatch("AddTemplate");
     }
   });
