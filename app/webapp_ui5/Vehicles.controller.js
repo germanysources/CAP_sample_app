@@ -13,7 +13,7 @@ sap.ui.define([
       var model = this.getView().getModel();
       var context = model.bindList("/Vehicles", undefined, undefined, undefined, { $$updateGroupId: "AddTemplate1" }).create({
         ID: this.getView().byId('ID').getValue(),
-	type: this.getView().byId('type').getSelectedItem()
+	type_ID: this.getView().byId('type').getSelectedKey()
       });
       context.created()
        .then(() => {
