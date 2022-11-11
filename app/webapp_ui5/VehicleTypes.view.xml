@@ -11,7 +11,7 @@
 
   <f:SimpleForm id="simpleForm"
       maxContainerCols="2"
-      title="Fahrzeugart Erfassung">
+      title="Erfassung Fahrzeugtypen">
       <f:content>
       <l:VerticalLayout>
       <Button text="Sichern" press="onSave"/>
