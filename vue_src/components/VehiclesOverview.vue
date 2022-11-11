@@ -1,9 +1,9 @@
 <template>
-  <h1>Fahrzeugtypen</h1>
+  <h1>Fahrzeuge</h1>
   <div class="section">
     <h3>Fahzeugtyp erstellen</h3>
-    <form class="flex" @submit.prevent="createVehicleType">
-      <div><input v-model="vehicleType.text"></div>
+    <form class="flex" @submit.prevent="createVehicle">
+      <div><input v-model="vehicle.ID"></div>
       <div><input type="submit" value="Submit"></div>
     </form>
   </div>
@@ -17,7 +17,7 @@
   </div>
 </template>
 <script>
-import VehicleType from './components/VehicleType.vue';
+import VehicleType from './VehicleType.vue';
 
 export default {
   name: 'App',
