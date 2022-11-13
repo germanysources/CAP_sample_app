@@ -3,8 +3,8 @@
   <div class="section">
     <h3>Fahzeugtyp erstellen</h3>
     <form class="flex" @submit.prevent="createVehicleType">
-      <div><input v-model="vehicleType.text"></div>
-      <div><input type="submit" value="Submit"></div>
+      <div><input v-model="vehicleType.text" required></div>
+      <div><input type="submit" value="Sichern"></div>
     </form>
   </div>
   <div class="section">
@@ -20,7 +20,7 @@
 import VehicleType from './VehicleType.vue';
 
 export default {
-  name: 'App',
+  name: 'VehicleTypesOverview',
   components: {
     VehicleType
   },
@@ -52,6 +52,10 @@ export default {
           },
           body: JSON.stringify(this.vehicleType)
 	});
+	if (!response.ok)
+	  throw new Error(await response.json());
+
+	await this.readVehicleTypes();
       } catch(error) {
         console.error(error);
       }

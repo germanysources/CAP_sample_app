@@ -1,14 +1,20 @@
 <template>
-  <div class="flex">
-    <input v-model="vehicleType.text" v-if="!editableModeActive" disabled>
-    <input v-model="vehicleType.text" v-if="editableModeActive">
-    <a class="icon" v-on:click="changeState()">
-      <i :class="['fas', 'fa-fw', editableModeActive ? 'fa-glasses' : 'fa-pencil-alt']"></i>
-    </a>
-    <a class="icon" v-on:click="deleteVehicleType()">
-      <i :class="['fas', 'fa-fw', 'fa-trash-alt']"></i>
-    </a>
-  </div>
+  <tr>
+    <td>
+      <input v-model="vehicleType.text" v-if="!editableModeActive" disabled>
+      <input v-model="vehicleType.text" v-if="editableModeActive">
+    </td>
+    <td>
+      <a class="icon" v-on:click="changeState()">
+        <i :class="['fas', 'fa-fw', editableModeActive ? 'fa-glasses' : 'fa-pencil-alt']"></i>
+      </a>
+    </td>
+    <td>
+      <a class="icon" v-on:click="deleteVehicleType()">
+        <i :class="['fas', 'fa-fw', 'fa-trash-alt']"></i>
+      </a>
+    </td>
+  </tr>
 </template>
 
 <script>

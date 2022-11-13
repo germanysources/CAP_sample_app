@@ -1,0 +1,27 @@
+.flex{
+	display: flex;
+	grid-gap: 10px;
+}
+
+.form-element{
+	margin: 10px;
+}
+
+.center{
+	text-align: center;
+}
+
+a{
+	cursor: pointer;
+	color: blue;
+	text-decoration: underline;
+}
+
+.error{
+	color: red;
+	border: 1px solid red;
+	border-radius: 4px;
+	width: fit-content;
+	margin: 10px 0px 10px 0px;
+	padding: 5px;
+}

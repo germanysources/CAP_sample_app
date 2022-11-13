@@ -1,37 +1,57 @@
 <template>
   <h1>Fahrzeuge</h1>
   <div class="section">
-    <h3>Fahzeugtyp erstellen</h3>
+    <h3>Fahrzeug erstellen</h3>
+    <div class="error" v-if="error">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span>{{ error.message }}</span>
+    </div>
     <form class="flex" @submit.prevent="createVehicle">
-      <div><input v-model="vehicle.ID"></div>
-      <div><input type="submit" value="Submit"></div>
+      <div>
+        <input v-model="vehicle.ID" required>
+      </div>
+      <div>
+        <select v-model="vehicle.type_ID" required>
+          <option
+            v-for="vehicleType in vehicleTypes"
+            :value="vehicleType.ID">{{ vehicleType.text }}</option>
+        </select>
+      </div>
+      <div><input type="submit" value="Sichern"></div>
     </form>
   </div>
   <div class="section">
-    <h3>Liste Fahzeugtypen</h3>
-    <VehicleType
-      v-for="vehicleType in vehicleTypes"
-      v-bind:vehicleType="vehicleType"
-      @deleted="readVehicleTypes()"
-    />
+    <h3>Liste Fahrzeuge</h3>
+    <table>
+      <tr><th>Kennzeichen</th><th>Fahrzeugtyp</th><th></th></tr>
+      <Vehicle
+        v-for="vehicle in vehicles"
+        v-bind:vehicle="vehicle"
+	@updated="readVehicles()"
+        @deleted="readVehicles()"
+      />
+    </table>
   </div>
 </template>
 <script>
-import VehicleType from './VehicleType.vue';
+import Vehicle from './Vehicle.vue';
 
 export default {
-  name: 'App',
+  name: 'VehiclesOverview',
   components: {
-    VehicleType
+    Vehicle
   },
   data: function() {
     return {
-      vehicleType: { text: '' },
+      error: null,
+      vehicle: {},
+      vehicles: [],
       vehicleTypes: []
     }
   },
   created: async function() {
     await this.readVehicleTypes();
+    await this.readVehicles();
   },
   methods: {
     readVehicleTypes: async function() {
@@ -43,17 +63,30 @@ export default {
 	this.vehicleTypes = (await response.json()).value;
       } catch(error) { console.error(error); }
     },
-    createVehicleType: async function() {
+    readVehicles: async function() {
       try {
-        const response = await fetch('/tour/createVehicleType', {
+        const response = await fetch('/tour/Vehicles?$expand=type');
+	if (!response.ok)
+	  throw new Error(await response.text());
+
+	this.vehicles = (await response.json()).value;
+      } catch(error) { console.error(error); }
+    },
+    createVehicle: async function() {
+      try {
+        const response = await fetch('/tour/createVehicle', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(this.vehicleType)
+          body: JSON.stringify(this.vehicle)
 	});
+	if (!response.ok)
+          throw (await response.json()).error;
+
+        await this.readVehicles();
       } catch(error) {
-        console.error(error);
+        this.error = error;
       }
     }
   }

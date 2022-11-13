@@ -1,19 +1,25 @@
 <template>
-  <div class="flex">
-    <div>{{ vehicle.ID }}</div>
-    <select v-model="vehicle.type_ID" v-if="editableModeActive">
-      <option
-        v-for="vehicleType in vehicleTypes"
-	:value="vehicleType.ID">{{ vehicleType.text }}</option>
-    </select>
-    <div v-if="!editableModeActive">{{ vehicle.type.text }}</div>
-    <a class="icon" v-on:click="changeState()">
-      <i :class="['fas', 'fa-fw', editableModeActive ? 'fa-glasses' : 'fa-pencil-alt']"></i>
-    </a>
-    <a class="icon" v-on:click="deleteVehicle()">
-      <i :class="['fas', 'fa-fw', 'fa-trash-alt']"></i>
-    </a>
-  </div>
+  <tr>
+    <td>{{ vehicle.ID }}</td>
+    <td>
+      <select v-model="vehicle.type_ID" v-if="editableModeActive">
+        <option
+          v-for="vehicleType in vehicleTypes"
+	  :value="vehicleType.ID">{{ vehicleType.text }}</option>
+      </select>
+      <div v-if="!editableModeActive">{{ vehicle.type.text }}</div>
+    </td>
+    <td>
+      <a class="icon" v-on:click="changeState()">
+        <i :class="['fas', 'fa-fw', editableModeActive ? 'fa-glasses' : 'fa-pencil-alt']"></i>
+      </a>
+    </td>
+    <td>
+      <a class="icon" v-on:click="deleteVehicle()">
+        <i :class="['fas', 'fa-fw', 'fa-trash-alt']"></i>
+      </a>
+    </td>
+  </tr>
 </template>
 
 <script>
@@ -38,7 +44,7 @@ export default {
 	if (!response.ok)
 	  throw new Error(await response.text());
 	
-	this.vehicleTypes = await response.json();
+	this.vehicleTypes = (await response.json()).value;
       } catch(error) {
         console.error(error);
       }
@@ -61,6 +67,7 @@ export default {
           throw new Error(await response.text());
         }
         this.editableModeActive = false;
+	this.$emit("deleted", this.vehicleType);
       } catch(error) {
         console.error(error);
       }

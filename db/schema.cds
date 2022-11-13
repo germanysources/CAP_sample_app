@@ -7,7 +7,9 @@ entity VehicleTypes : managed {
 }
 
 entity Vehicles : managed {
+  @mandatory
   key ID : String(20);
+  @mandatory
   type: Association to VehicleTypes;
 }
 

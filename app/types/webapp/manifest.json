@@ -11,7 +11,7 @@
     },
     "dataSources": {
       "DispositionService": {
-        "uri": "tour/",
+        "uri": "/tour/",
         "type": "OData",
         "settings": {
           "odataVersion": "4.0"
