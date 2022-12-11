@@ -11,8 +11,11 @@
 	    <th></th>
 	  </tr>
 	  <TransportedGood
-	    v-for="good in goods"
+	    v-for="(good, index) in goods"
+	    :index="index"
 	    :transportedGood="good"
+	    @changed="changeTransportedGood($event)"
+	    @deleted="deleteTransportedGood($event)"
 	  />
           <tr>
             <td><input v-model="newGood.material" required></td>
@@ -59,6 +62,13 @@ export default {
       this.goods = [...this.goods, this.newGood];
       this.newGood = {};
       this.$emit("changed", this.goods);
+    },
+    changeTransportedGood: function(goodWrapper) {
+      this.goods[goodWrapper.i] = goodWrapper.good;
+    },
+    deleteTransportedGood: function(goodWrapper) {
+      this.goods[goodWrapper.i] = null;
+      this.goods = this.goods.filter(good => good != null);
     }
   }
 }

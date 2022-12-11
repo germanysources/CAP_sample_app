@@ -30,7 +30,7 @@ entity PlannedTours : managed {
   startAddress: Address;
   endDate: DateTime;
   targetAddress: Address;
-  transportedGoods: Association to many TransportedGoods on transportedGoods.tour = $self;
+  transportedGoods: Composition of many TransportedGoods on transportedGoods.tour = $self;
 }
 
 entity TransportedGoods : managed {

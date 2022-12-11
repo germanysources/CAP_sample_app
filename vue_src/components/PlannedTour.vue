@@ -6,22 +6,26 @@
       :errorMessage="error.message"
     />
     <form @submit.prevent="createTour">
-      <div class="flex">
-        <div>Fahrzeug</div>
-	<div>
-          <select v-model="tour.vehicle_ID" required>
-            <option
-	      v-for="vehicle in vehicles"
-	      :value="vehicle.ID">{{ vehicle.ID }} ({{ vehicle.type.text }})</option>
-	  </select>
-	</div>
-      </div>
-      <div class="flex">
-        <div>Abholdatum und -uhrzeit</div>
-	<DateTime
-	  :date="tour.startDate"
-	  @changed="updateDate($event)"/>
-      </div>
+      <table>
+        <tr>
+          <td>Fahrzeug</td>
+	  <td>
+            <select v-model="tour.vehicle_ID" required>
+              <option
+	        v-for="vehicle in vehicles"
+	        :value="vehicle.ID">{{ vehicle.ID }} ({{ vehicle.type.text }})</option>
+	    </select>
+	  </td>
+	</tr>
+        <tr>
+          <td>Abholdatum und -uhrzeit</td>
+	  <td>
+	    <DateTime
+	      :date="tour.startDate"
+	      @changed="updateDate($event)"/>
+	  </td>
+        </tr>
+      </table>
       <h3>Abholaddresse</h3>
       <Address
         :address="startAddress"
