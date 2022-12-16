@@ -65,10 +65,12 @@ export default {
     },
     changeTransportedGood: function(goodWrapper) {
       this.goods[goodWrapper.i] = goodWrapper.good;
+      this.$emit("changed", this.goods);
     },
     deleteTransportedGood: function(goodWrapper) {
       this.goods[goodWrapper.i] = null;
       this.goods = this.goods.filter(good => good != null);
+      this.$emit("changed", this.goods);
     }
   }
 }

@@ -1,21 +1,17 @@
 using {DispositionService} from '../../srv/tour-service.cds';
 
 annotate DispositionService.VehicleType with @(UI: {
-	HeaderInfo: {
-		TypeName: 'Vehicle Type',
-		TypeNamePlural: 'Vehicle Types',
-		Description: {Value : lifetime}
+	SelectionFields: {
+		text
 	},
-	Facets : [
+	LineItem: [
 		{
-			$Type : 'UI.ReferenceFacet',
-			Label : '{i18n>Details}',
-			Target : '@UI.FieldGroup#Details'
+			Value: ID,
+			Label: '{i18n>ID}'
+		},
+		{
+			Value: text,
+			Label: '{i18n>Text}'
 		}
-	],
-	FieldGroup #Details : {Data : [
-		{Value : text}
-	]}
+	]
 });
-
-annotate DispositionService.VehicleType with { ID @Core.Computed; }

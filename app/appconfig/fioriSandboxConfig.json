@@ -11,7 +11,7 @@
 							"isPreset": true,
 							"isVisible": true,
 							"tiles": [
-							{"id": "BrowseVehicleTypes", "tileType": "sap.ushell.ui.tile.StaticTile", "properties": {"title": "Manage vehicle types", "targetURL": "#browse-vehicle-types"}}
+							{"id": "BrowseVehicleTypes", "tileType": "sap.ushell.ui.tile.StaticTile", "properties": {"title": "Manage vehicle types", "targetURL": "#Action-browsevehicletypes"}}
 							]
 						}
 					]
@@ -27,10 +27,14 @@
 			"adapter": {
 				"config": {
 					"inbounds": {
-						"BrowseVehicleTypes": {
-							"semanticObject": "VehicleTypes",
-							"action": "display",
+						"actionBrowseVehicleTypes": {
+							"semanticObject": "Action",
+							"action": "browsevehicletypes",
 							"title": "Browse Vehicle Types",
+							"signature": {
+								"parameters": {},
+								"additionalParameters": "allowed"
+							},
 							"resolutionResult": {
 								"applicationType": "SAPUI5",
 								"additionalInformation": "SAPUI5.Component=vehicleTypes",
