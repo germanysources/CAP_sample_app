@@ -1,14 +1,19 @@
-using {DispositionService} from '../../srv/tour-service.cds';
+using {DispositionService} from '../../srv/tour-service';
 
-annotate DispositionService.VehicleType with @(UI: {
-	LineItem: [
+annotate DispositionService.VehicleTypes with @odata.draft.enabled;
+
+annotate DispositionService.VehicleTypes with @(UI: {
+	Facets: [
 		{
-			Value: ID,
-			Label: '{i18n>ID}'
-		},
-		{
-			Value: text,
-			Label: '{i18n>Text}'
+			$Type: 'UI.ReferenceFacet',
+			Label: '{i18n>Details}',
+			Target: '@UI.FieldGroup#Details'
 		}
-	]
+	],
+	FieldGroup #Details: {
+		Data: [
+			{Value: ID},
+			{Value: text}
+		]
+	}
 });
