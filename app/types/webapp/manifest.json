@@ -26,14 +26,6 @@
     "crossNavigation": {
       "inbounds": {
         "intent1": {
-          "signature": {
-            "parameters": {
-              "Books.author.ID":{
-                "renameTo": "ID"
-              }
-            },
-            "additionalParameters": "ignored"
-          },
           "semanticObject": "VehicleTypes",
           "action": "display",
           "title": "{{appTitle}}",
