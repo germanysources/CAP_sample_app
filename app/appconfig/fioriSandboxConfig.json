@@ -11,7 +11,8 @@
 							"isPreset": true,
 							"isVisible": true,
 							"tiles": [
-							{"id": "BrowseVehicleTypes", "tileType": "sap.ushell.ui.tile.StaticTile", "properties": {"title": "Manage vehicle types", "targetURL": "#Action-browsevehicletypes"}}
+								{"id": "BrowseVehicleTypes", "tileType": "sap.ushell.ui.tile.StaticTile", "properties": {"title": "Manage vehicle types", "targetURL": "#Action-browsevehicletypes"}},
+								{"id": "BrowseVehicles", "tileType": "sap.ushell.ui.tile.StaticTile", "properties": {"title": "Manage vehicles", "targetURL": "#Action-browsevehicles"}}
 							]
 						}
 					]
@@ -41,6 +42,20 @@
 								"url": "/types/webapp"
 							}
 
+						},
+						"actionBrowseVehicles": {
+							"semanticObject": "Action",
+							"action": "browsevehicles",
+							"title": "Browse Vehicles",
+							"signature": {
+								"parameters": {},
+								"additionalParameters": "allowed"
+							},
+							"resolutionResult": {
+								"applicationType": "SAPUI5",
+								"additionalInformation": "SAPUI5.Component=vehicles",
+								"url": "/vehicles/webapp"
+							}
 						}
 					}
 				}
