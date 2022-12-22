@@ -1,9 +1,6 @@
 using {DispositionService} from '../../srv/tour-service.cds';
 
 annotate DispositionService.VehicleType with @(UI: {
-	SelectionFields: {
-		text
-	},
 	LineItem: [
 		{
 			Value: ID,

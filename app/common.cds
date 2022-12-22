@@ -3,11 +3,11 @@ using { sap.capire.tours as my } from '../db/schema';
 annotate my.VehicleTypes with @(
 	Common.SemanticKey : [ID],
 	UI : {
-		Identification : [{Value : text}],
-		SelectionFields : [name],
+		Identification : [{Value : ID}],
+		SelectionFields : [ID, text],
 		LineItem : [
 			{Value : ID},
-			{Value : text }
+			{Value: text}
 		]
 	}
 ) {

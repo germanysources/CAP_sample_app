@@ -91,7 +91,7 @@
               "entitySet": "VehicleTypes",
               "initialLoad": true,
               "navigation": {
-                "Authors": {
+                "VehicleTypes": {
                   "detail": {
                     "route": "VehicleTypeDetails"
                   }
