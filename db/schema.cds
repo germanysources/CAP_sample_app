@@ -6,9 +6,11 @@ entity VehicleTypes : managed {
   text : localized String(100);
 }
 
+@assert.unique: { ID: [ID] }
 entity Vehicles : managed {
+  key UID: UUID;
   @mandatory
-  key ID : String(20);
+  ID : String(20);
   @mandatory
   type: Association to VehicleTypes;
 }
