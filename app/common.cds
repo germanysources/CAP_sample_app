@@ -43,3 +43,26 @@ annotate my.Vehicles with {
 		TextArrangement: #TextOnly
 	}
 }
+
+annotate my.PlannedTours with @(
+	Common.SemanticKey : [ID],
+	UI : {
+		SelectionFields : [vehicle_ID, startDate],
+		LineItem : [
+			{Value : vehicle.ID},
+			{Value : vehicle.type.text},
+			{Value : startDate},
+			{Value : startAddress_addressLine},
+			{Value : startAddress_street},
+			{Value : startAddress_streetNumber},
+			{Value : endDate}
+		]
+	}
+) {
+	ID @Common: {
+		SemanticObject : 'PlannedTours',
+		Text: ID,
+		TextArrangment: #TextOnly,
+	};
+	vehicle @ValueList.entity: 'Vehicles'
+};
