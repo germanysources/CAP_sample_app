@@ -14,7 +14,6 @@ entity Vehicles : managed {
 }
 
 type Address {
-  formatted: String(200);
   addressLine: String(100);
   street: String(100);
   streetNumber: String(10);
@@ -39,4 +38,5 @@ entity TransportedGoods : managed {
   material: String(100);
   quantity: Decimal(10,2);
   unitOfMeasure: String(3);
+  weightInKg: Decimal(10, 2);
 }
