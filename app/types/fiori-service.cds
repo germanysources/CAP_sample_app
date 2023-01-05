@@ -12,8 +12,14 @@ annotate DispositionService.VehicleTypes with @(UI: {
 	],
 	FieldGroup #Details: {
 		Data: [
-			{Value: ID},
-			{Value: text}
+			{
+				Value: ID,
+				Label: '{i18n>ID}'
+			},
+			{
+				Value: text,
+				Label: '{i18n>Text}'
+			}
 		]
 	}
 });

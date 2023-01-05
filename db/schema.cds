@@ -24,10 +24,15 @@ type Address {
 
 entity PlannedTours : managed {
   key ID : UUID;
+  @mandatory
   vehicle: Association to Vehicles;
+  @mandatory
   startDate: DateTime;
+  @mandatory
   startAddress: Address;
+  @mandatory
   endDate: DateTime;
+  @mandatory
   targetAddress: Address;
   transportedGoods: Composition of many TransportedGoods on transportedGoods.tour = $self;
 }
@@ -38,5 +43,4 @@ entity TransportedGoods : managed {
   material: String(100);
   quantity: Decimal(10,2);
   unitOfMeasure: String(3);
-  weightInKg: Decimal(10, 2);
 }

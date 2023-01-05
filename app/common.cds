@@ -21,7 +21,10 @@ annotate my.VehicleTypes with @(
 annotate my.Vehicles with @(
 	Common.SemanticKey : [ID],
 	UI : {
-		Identification : [{Value : ID}],
+		Identification : [
+			{Value : ID},
+			{Value: type.text}
+		],
 		SelectionFields : [ID, type_ID],
 		LineItem : [
 			{Value : ID},
