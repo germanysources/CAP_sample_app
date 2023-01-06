@@ -22,17 +22,27 @@
 	  <td>
 	    <DateTime
 	      :date="tour.startDate"
-	      @changed="updateDate($event)"/>
+	      @changed="updateStartDate($event)"/>
 	  </td>
         </tr>
+	<tr>
+          <td>Eintreffdatum- und Uhrzeit</td>
+	  <td>
+            <DateTime
+	      :date="tour.endDate"
+	      @changed="updateEndDate($event)"/>
+	  </td>
+	</tr>
       </table>
       <h3>Abholaddresse</h3>
       <Address
         :address="startAddress"
+	@error="setErrorMessage($event)"
       />
       <h3>Empfängeraddresse</h3>
       <Address
         :address="endAddress"
+	@error="setErrorMessage($event)"
       />
       <TransportedGoodsOverview
         :transportedGoods="tour.transportedGoods"
@@ -92,13 +102,13 @@ export default {
 	    startAddress_streetNumber: this.startAddress.streetNumber,
 	    startAddress_zip: this.startAddress.zip,
 	    startAddress_city: this.startAddress.city,
-	    startAddress_country: this.startAddress.country,
+	    startAddress_country_code: this.startAddress.country,
 	    targetAddress_addressLine: this.endAddress.addressLine,
 	    targetAddress_street: this.endAddress.street,
 	    targetAddress_streetNumber: this.endAddress.streetNumber,
 	    targetAddress_zip: this.endAddress.zip,
 	    targetAddress_city: this.endAddress.city,
-	    targetAddress_country: this.endAddress.country
+	    targetAddress_country_code: this.endAddress.country
 	  })
 	});
 	if (!response.ok)
@@ -115,12 +125,18 @@ export default {
         this.vehicles = (await response.json()).value;
       } catch(error) { this.error = error; }
     },
-    updateDate: function(date) {
+    updateStartDate: function(date) {
       this.tour.startDate = date;
+    },
+    updateEndDate: function(date) {
+      this.tour.endDate = date;
     },
     updateTransportedGoods: function(transportedGoods) {
       this.tour.transportedGoods = transportedGoods;
     },
+    setErrorMessage: function(message) {
+      this.error = new Error(message);
+    }
   }
 }
 </script>

@@ -62,7 +62,7 @@ annotate DispositionService.PlannedTours with @(UI: {
 				Label: '{i18n>Zip}'
 			},
 			{
-				Value: startAddress_country,
+				Value: startAddress_country_code,
 				Label: '{i18n>Country}'
 			}
 		]
@@ -90,7 +90,7 @@ annotate DispositionService.PlannedTours with @(UI: {
 				Label: '{i18n>Zip}'
 			},
 			{
-				Value: targetAddress_country,
+				Value: targetAddress_country_code,
 				Label: '{i18n>Country}'
 			}
 		]

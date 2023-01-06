@@ -1,4 +1,4 @@
-using { managed, sap } from '@sap/cds/common';
+using { managed, sap, Country } from '@sap/cds/common';
 namespace sap.capire.tours;
 
 entity VehicleTypes : managed {
@@ -19,7 +19,7 @@ type Address {
   streetNumber: String(10);
   city: String(100);
   zip: String(10);
-  country: String(2);
+  country: Country;
 }
 
 entity PlannedTours : managed {
