@@ -1,7 +1,5 @@
 using {DispositionService} from '../../srv/tour-service';
 
-annotate DispositionService.PlannedTours with @odata.draft.enabled;
-
 annotate DispositionService.PlannedTours with @(UI: {
 	Facets: [
 		{
