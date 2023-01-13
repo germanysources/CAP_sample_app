@@ -1,4 +1,4 @@
-using { managed, sap, Country } from '@sap/cds/common';
+using { managed, sap, Country, User } from '@sap/cds/common';
 namespace sap.capire.tours;
 
 entity VehicleTypes @(restrict: [
@@ -29,7 +29,8 @@ type Address {
 }
 
 entity PlannedTours @(restrict: [
-  { grant: 'READ' },
+  { grant: 'READ', to: 'Dispatcher' },
+  { grant: 'READ', to: 'Driver', where: 'driver = $user' },
   { grant: 'WRITE', to: 'Dispatcher' }
 ]) : managed {
   key ID : UUID;
@@ -45,6 +46,7 @@ entity PlannedTours @(restrict: [
   targetAddress: Address;
   transportedGoods: Composition of many TransportedGoods on transportedGoods.tour = $self;
   driver: User;
+  confirmation: Composition of TourConfirmations on confirmation.tour = $self;
 }
 
 entity TransportedGoods @(restrict: [
@@ -59,8 +61,8 @@ entity TransportedGoods @(restrict: [
 }
 
 entity TourConfirmations @(restrict: [
-  { grant: 'READ' }
-  { grant: 'WRITE', to: 'Dispatcher' }
+  { grant: 'READ' },
+  { grant: 'WRITE', to: 'Dispatcher' },
   { grant: 'WRITE', to: 'Driver', where: 'tour.driver = $user' }
 ]) : managed {
   key ID: UUID;

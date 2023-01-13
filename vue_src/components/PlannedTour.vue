@@ -33,6 +33,10 @@
 	      @changed="updateEndDate($event)"/>
 	  </td>
 	</tr>
+	<tr>
+          <td>Fahrer</td>
+	  <td><input v-model="tour.driver"></td>
+	</tr>
       </table>
       <h3>Abholaddresse</h3>
       <Address
