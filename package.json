@@ -46,6 +46,21 @@
   },
   "cds": {
     "requires": {
+      "auth": {
+        "kind": "mocked",
+        "users": {
+          "dispatcher1": {
+            "password": "",
+            "roles": [
+              "Dispatcher"
+            ]
+          },
+          "driver": {
+            "password": "",
+            "roles": []
+          }
+        }
+      },
       "db": {
         "kind": "sqlite"
       }

@@ -6,10 +6,16 @@ service DispositionService @(path: '/tour') @(requires:'authenticated-user') {
   entity TransportedGoods as projection on my.TransportedGoods;
   entity PlannedTours as projection on my.PlannedTours;
 
+  @(restrict: [{ to: 'Dispatcher' }])
   action createVehicleType(text: String) returns {};
+  @(restrict: [{ to: 'Dispatcher' }])
   action updateVehicleType(ID: UUID, text: String) returns {};
+  @(restrict: [{ to: 'Dispatcher' }])
   action deleteVehicleType(ID: UUID) returns {};
+  @(restrict: [{ to: 'Dispatcher' }])
   action createVehicle(ID: String, type_ID: UUID) returns {};
+  @(restrict: [{ to: 'Dispatcher' }])
   action updateVehicle(ID: String, type_ID: UUID) returns {};
+  @(restrict: [{ to: 'Dispatcher' }])
   action deleteVehicle(ID: String) returns {};
 }

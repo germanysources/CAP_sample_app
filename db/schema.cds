@@ -1,12 +1,18 @@
 using { managed, sap, Country } from '@sap/cds/common';
 namespace sap.capire.tours;
 
-entity VehicleTypes : managed {
+entity VehicleTypes @(restrict: [
+  { grant: 'READ' },
+  { grant: 'WRITE', to: 'Dispatcher' }
+]) : managed {
   key ID : UUID;
   text : localized String(100);
 }
 
-entity Vehicles : managed {
+entity Vehicles @(restrict: [
+  { grant: 'READ' },
+  { grant: 'WRITE', to: 'Dispatcher' }
+]) : managed {
   @mandatory
   key ID : String(20);
   @mandatory
@@ -22,7 +28,10 @@ type Address {
   country: Country;
 }
 
-entity PlannedTours : managed {
+entity PlannedTours @(restrict: [
+  { grant: 'READ' },
+  { grant: 'WRITE', to: 'Dispatcher' }
+]) : managed {
   key ID : UUID;
   @mandatory
   vehicle: Association to Vehicles;
@@ -37,7 +46,10 @@ entity PlannedTours : managed {
   transportedGoods: Composition of many TransportedGoods on transportedGoods.tour = $self;
 }
 
-entity TransportedGoods : managed {
+entity TransportedGoods @(restrict: [
+  { grant: 'READ' },
+  { write: 'WRITE', to: 'Dispatcher' }
+]) : managed {
   key ID: UUID;
   tour: Association to PlannedTours;
   material: String(100);
