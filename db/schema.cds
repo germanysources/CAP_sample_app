@@ -44,6 +44,7 @@ entity PlannedTours @(restrict: [
   @mandatory
   targetAddress: Address;
   transportedGoods: Composition of many TransportedGoods on transportedGoods.tour = $self;
+  driver: User;
 }
 
 entity TransportedGoods @(restrict: [
@@ -55,4 +56,17 @@ entity TransportedGoods @(restrict: [
   material: String(100);
   quantity: Decimal(10,2);
   unitOfMeasure: String(3);
+}
+
+entity TourConfirmations @(restrict: [
+  { grant: 'READ' }
+  { grant: 'WRITE', to: 'Dispatcher' }
+  { grant: 'WRITE', to: 'Driver', where: 'tour.driver = $user' }
+]) : managed {
+  key ID: UUID;
+  tour: Association to PlannedTours;
+  startDate: DateTime;
+  endDate: DateTime;
+  kmStart: Decimal(10, 0);
+  kmEnd: Decimal(10, 0);
 }
