@@ -29,8 +29,8 @@ type Address {
 }
 
 entity PlannedTours @(restrict: [
-  { grant: 'READ', to: 'Dispatcher' },
   { grant: 'READ', to: 'Driver', where: 'driver = $user' },
+  { grant: 'READ', to: 'Dispatcher' },
   { grant: 'WRITE', to: 'Dispatcher' }
 ]) : managed {
   key ID : UUID;
@@ -46,7 +46,7 @@ entity PlannedTours @(restrict: [
   targetAddress: Address;
   transportedGoods: Composition of many TransportedGoods on transportedGoods.tour = $self;
   driver: User;
-  confirmation: Composition of TourConfirmations on confirmation.tour = $self;
+  confirmation: Composition of many TourConfirmations on confirmation.tour = $self;
 }
 
 entity TransportedGoods @(restrict: [

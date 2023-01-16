@@ -13,7 +13,8 @@
 							"tiles": [
 								{"id": "BrowseVehicleTypes", "tileType": "sap.ushell.ui.tile.StaticTile", "properties": {"title": "Manage vehicle types", "targetURL": "#Action-browsevehicletypes"}},
 								{"id": "BrowseVehicles", "tileType": "sap.ushell.ui.tile.StaticTile", "properties": {"title": "Manage vehicles", "targetURL": "#Action-browsevehicles"}},
-								{"id": "BrowseTours", "tileType": "sap.ushell.ui.tile.StaticTile", "properties": {"title": "Manage tours", "targetURL": "#Action-browsetours"}}
+								{"id": "BrowseTours", "tileType": "sap.ushell.ui.tile.StaticTile", "properties": {"title": "Manage tours", "targetURL": "#Action-browsetours"}},
+								{"id": "ConfirmTours", "tileType": "sap.ushell.ui.tile.StaticTile", "properties": {"title": "Confirm tours", "targetURL": "#Action-confirmtours"}}
 							]
 						}
 					]
@@ -56,6 +57,20 @@
 								"applicationType": "SAPUI5",
 								"additionalInformation": "SAPUI5.Component=vehicles",
 								"url": "/vehicles/webapp"
+							}
+						},
+						"actionConfirmTours": {
+							"semanticObject": "Action",
+							"action": "confirmtours",
+							"title": "Confirm tours",
+							"signature": {
+								"parameters": {},
+								"additionalParameters": "allowed"
+							},
+							"resolutionResult": {
+								"applicationType": "SAPUI5",
+								"additionalInformation": "SAPUI5.Component=tourConfirmation",
+								"url": "/tour-confirmations/webapp"
 							}
 						},
 						"actionBrowseTours": {

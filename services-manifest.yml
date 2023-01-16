@@ -1,0 +1,12 @@
+# Generated services-manifest.yml based on template version 0.1.0
+# appName = tour
+---
+create-services:
+# ------------------------------------------------------------
+  - name:   tour-auth
+    broker: xsuaa
+    plan: application
+# ------------------------------------------------------------
+  - name:   tour-db
+    broker: hana  # 'hanatrial' on trial landscapes
+    plan: "hdi-shared"

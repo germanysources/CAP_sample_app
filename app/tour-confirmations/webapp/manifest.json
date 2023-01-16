@@ -1,0 +1,133 @@
+{
+  "_version": "0.0.0",
+  "sap.app": {
+    "id": "tour",
+    "type": "application",
+    "title": "Manage Tours",
+    "description": "Sample Application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "dataSources": {
+      "ConfirmationService": {
+        "uri": "/conf/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "sourceTemplate": {
+      "id": "ui5template.basicSAPUI5ApplicationProject",
+      "-id": "ui5template.smartTemplate",
+      "version": "1.40.12"
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "intent1": {
+          "semanticObject": "PendingTours",
+          "action": "display",
+          "title": "{{appTitle}}",
+          "info": "{{appInfo}}",
+          "subTitle": "{{appSubTitle}}",
+          "icon": "sap-icon://SAP-icons-TNT/user",
+          "indicatorDataSource": {
+            "dataSource": "ConfirmationService",
+            "path": "PendingTours/$count",
+            "refresh": 1800
+          }
+        }
+      }
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.81.0",
+      "libs": {
+        "sap.fe.templates": {}
+      }
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      },
+      "": {
+        "dataSource": "ConfirmationService",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "groupProperties": {
+            "default": {
+              "submit": "Auto"
+            }
+          }
+        }
+      }
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "PendingToursList",
+          "target": "PendingToursList"
+        },
+        {
+          "pattern": "PendingTours({key}):?query:",
+          "name": "PendingTourDetails",
+          "target": "PendingTourDetails"
+        }
+      ],
+      "targets": {
+        "PendingToursList": {
+          "type": "Component",
+          "id": "PendingToursList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "PendingTours",
+              "initialLoad": true,
+              "navigation": {
+                "PendingTours": {
+                  "detail": {
+                    "route": "PendingTourDetails"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "PendingTourDetails": {
+          "type": "Component",
+          "id": "PendingTourDetailsList",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "entitySet": "PendingTours"
+            }
+          }
+        }
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "fullWidth": false,
+    "deviceTypes":{
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}
