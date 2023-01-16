@@ -3,7 +3,7 @@ const cds = require('@sap/cds');
 /* Name must be identical to service name in CDS-service-definition */
 class DispositionService extends cds.ApplicationService {
   init(){
-    const {VehicleTypes, Vehicles} = this.entities('sap.capire.tours');
+    const {VehicleTypes, Vehicles, TourConfirmations} = this.entities('sap.capire.tours');
     this.on('createVehicleType', async req => {
      
       await INSERT.into(VehicleTypes, [req.data]);
@@ -25,6 +25,10 @@ class DispositionService extends cds.ApplicationService {
     });
     this.on('deleteVehicle', async req => {
       await DELETE(Vehicles, {ID: req.data.ID});
+    });
+    this.on('createTourConfirmation', async req => {
+      await INSERT.into(TourConfirmations, [req.data]);
+      return req.reply({});
     });
     return super.init();
   }

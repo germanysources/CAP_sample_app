@@ -144,7 +144,7 @@ annotate ConfirmationService.TourConfirmations with @(
 		LineItem: [
 			{
 				Value: startDate,
-				Label: '{i18n>StartDate}'
+				Label: '{i18n>StartDateActual}'
 			},
 			{
 				Value: kmStart,
@@ -152,7 +152,7 @@ annotate ConfirmationService.TourConfirmations with @(
 			},
 			{
 				Value: endDate,
-				Label: '{i18n>EndDate}'
+				Label: '{i18n>EndDateActual}'
 			},
 			{
 				Value: kmEnd,
