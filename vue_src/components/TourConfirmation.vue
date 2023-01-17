@@ -103,12 +103,18 @@ export default {
     },
     updateConfirmation: async function() {
       try {
-        const response = await fetch('/conf/TourConfirmations', {
+        const response = await fetch('/tour/updateTourConfirmation', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(this.confirmation)
+          body: JSON.stringify({
+	    ID: this.confirmation.ID,
+	    startDate: this.confirmation.startDate,
+	    kmStart: this.confirmation.kmStart,
+	    endDate: this.confirmation.endDate,
+	    kmEnd: this.confirmation.kmEnd
+	  })
         });
         if (!response.ok)
           throw new Error((await response.json()).error.message);

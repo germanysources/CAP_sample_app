@@ -20,4 +20,6 @@ service DispositionService @(path: '/tour') @(requires:'authenticated-user') {
   action deleteVehicle(ID: String) returns {};
   @(restrict: [{ to: 'Dispatcher' }, { to: 'Driver' }])
   action createTourConfirmation(startDate: DateTime, kmStart: Decimal(10, 0), endDate: DateTime, kmEnd: Decimal(10, 0), tour_ID: UUID) returns {};
+   @(restrict: [{ to: 'Dispatcher' }, { to: 'Driver' }])
+   action updateTourConfirmation(ID: UUID, startDate: DateTime, kmStart: Decimal(10, 0), endDate: DateTime, kmEnd: Decimal(10, 0)) returns {};
 }

@@ -30,6 +30,9 @@ class DispositionService extends cds.ApplicationService {
       await INSERT.into(TourConfirmations, [req.data]);
       return req.reply({});
     });
+    this.on('updateTourConfirmation', async req => {
+      await UPDATE(TourConfirmations, {ID: req.data.ID}).with(req.data);
+    });
     return super.init();
   }
 }
