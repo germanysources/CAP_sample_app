@@ -8,7 +8,7 @@
     </form>
   </div>
   <div class="section">
-    <h3>Liste Fahzeugtypen</h3>
+    <h3>Liste Fahrzeugtypen</h3>
     <VehicleType
       v-for="vehicleType in vehicleTypes"
       v-bind:vehicleType="vehicleType"
