@@ -25,22 +25,6 @@ modules:
       - name: tour-auth
       - name: tour-db
 
-  - name: tour
-    type: approuter.nodejs
-    path: app/ # from cds.env.folders. Consider also cds.env.build.target -> gen/app
-    parameters:
-      keep-existing-routes: true
-      disk-quota: 256M
-      memory: 256M
-    requires:
-      - name: srv-api
-        group: destinations
-        properties:
-          name: srv-api # must be used in xs-app.json as well
-          url: ~{srv-url}
-          forwardAuthToken: true
-      - name: tour-auth
-
   - name: tour-db-deployer
     type: hdb
     path: gen/db
@@ -48,6 +32,7 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: tour-db
+      - name: tour-auth
 
 resources:
   - name: tour-auth
@@ -64,3 +49,5 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+    properties:
+      hdi-service-name: ${service-name}
